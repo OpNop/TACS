@@ -1,0 +1,345 @@
+﻿<Window
+    x:Class="Chat_Client.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Chat_Client"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Tiny Alliance Chat Service"
+    Width="512"
+    Height="450"
+    MinWidth="245"
+    MinHeight="180"
+    MaxWidth="512"
+    MaxHeight="512"
+    AllowsTransparency="True"
+    Closing="Window_Closing"
+    Cursor="Assets/mouse.cur"
+    Loaded="Window_Loaded"
+    ResizeMode="CanResizeWithGrip"
+    ShowActivated="False"
+    ShowInTaskbar="False"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Background>
+        <ImageBrush ImageSource="Assets/155139.png" Stretch="None" />
+    </Window.Background>
+    <Window.Resources>
+        <Style TargetType="local:MainWindow">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="1"
+                                    Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Opacity"
+                                    To=".8"
+                                    Duration="0:0:0.3" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="AllowDrop" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border
+                            Name="Border"
+                            Padding="2"
+                            Background="#33000000"
+                            BorderBrush="#000000"
+                            BorderThickness="1"
+                            CornerRadius="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type RichTextBox}">
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="AllowDrop" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border
+                            Name="Border"
+                            Padding="2"
+                            Background="#33000000"
+                            BorderBrush="#000000"
+                            BorderThickness="1"
+                            CornerRadius="2">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="gw2Checkbox" TargetType="{x:Type CheckBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image
+                                x:Name="checkboxImage"
+                                Width="20"
+                                Height="20"
+                                Source="assets/checkbox-unchecked-normal.png"
+                                Stretch="None"
+                                UseLayoutRounding="False" />
+                            <ContentPresenter Margin="5,1,0,0" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Source" Value="assets/checkbox-checked-normal.png" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="gw2Button" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FFC8C0B0" />
+            <Setter Property="FontFamily" Value="Assets/#menomonia" />
+            <Setter Property="Cursor" Value="Assets/mouse.cur" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Name="border"
+                            Padding="4,2"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="#FF222222"
+                            BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF222222" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+
+        <Grid
+            x:Name="HeaderGrid"
+            Height="20"
+            VerticalAlignment="Top"
+            DockPanel.Dock="Top">
+            <Grid
+                x:Name="DragableArea"
+                Background="Black"
+                MouseLeftButtonDown="DragWindow" />
+            <TextBlock
+                Height="20"
+                Margin="4,0,0,0"
+                Padding="0,3,0,0"
+                HorizontalAlignment="Left"
+                Background="Transparent"
+                FontFamily="Assets/#menomonia"
+                FontStyle="Italic"
+                Foreground="#FF8BB9E0"
+                TextDecorations="{x:Null}">
+                Tiny Alliance Chat Service (TACS)
+            </TextBlock>
+            <StackPanel
+                Margin="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Orientation="Horizontal">
+
+                <Image
+                    x:Name="btnSettings"
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Right"
+                    MouseUp="btnSettings_MouseUp"
+                    Stretch="UniformToFill">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Assets/157109.png" />
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="Assets/157111.png" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Popup
+                    Name="SettingsPopup"
+                    Width="240"
+                    Height="110"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Focusable="True"
+                    HorizontalOffset="-220"
+                    PopupAnimation="Fade"
+                    StaysOpen="False">
+                    <Border BorderBrush="#AAFFFFFF" BorderThickness="1">
+                        <StackPanel Background="#FF212021">
+                            <CheckBox
+                                Margin="5,5,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Black"
+                                Content="Show Timestamps"
+                                FontFamily="Assets/#menomonia"
+                                FontSize="14"
+                                Foreground="#FFDDDDDD"
+                                IsChecked="{Binding showTimestamp}"
+                                Style="{DynamicResource gw2Checkbox}" />
+                            <CheckBox
+                                Margin="5,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Black"
+                                Content="Stay open on Map"
+                                FontFamily="Assets/#menomonia"
+                                FontSize="14"
+                                Foreground="#FFDDDDDD"
+                                IsChecked="{Binding showOnMap}"
+                                Style="{DynamicResource gw2Checkbox}" />
+                            <CheckBox
+                                Margin="5,0,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Background="Black"
+                                Content="Enable Discord Rich Presence"
+                                FontFamily="Assets/#menomonia"
+                                FontSize="14"
+                                Foreground="#FFDDDDDD"
+                                IsChecked="{Binding enableDiscord}"
+                                Style="{DynamicResource gw2Checkbox}" />
+                            <Button
+                                Margin="5,5,0,0"
+                                Padding="10,1"
+                                HorizontalAlignment="Left"
+                                Click="ChangeKey_Click"
+                                Style="{DynamicResource gw2Button}">
+                                Change API Key
+                            </Button>
+
+                        </StackPanel>
+                    </Border>
+                </Popup>
+
+
+                <Image
+                    x:Name="btnExit"
+                    Width="20"
+                    Height="20"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    DockPanel.Dock="Right"
+                    MouseDown="btnExit_Click"
+                    Source="Assets/close.png"
+                    Stretch="UniformToFill" />
+            </StackPanel>
+        </Grid>
+
+        <Grid DockPanel.Dock="Top" FocusManager.FocusedElement="{Binding ElementName=message}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="481*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="11*" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer
+                x:Name="ScrollViewer"
+                Grid.ColumnSpan="3"
+                Margin="0,0,0,23"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Top"
+                ScrollChanged="ScrollViewer_OnScrollChanged">
+
+
+                <RichTextBox
+                    x:Name="ChatBox"
+                    AllowDrop="False"
+                    Background="{x:Null}"
+                    Block.TextAlignment="Left"
+                    BorderBrush="{x:Null}"
+                    Cursor="IBeam"
+                    FontFamily="Assets/#menomonia"
+                    FontSize="13 px"
+                    Foreground="#FFA8C138"
+                    IsReadOnly="True"
+                    IsTabStop="False">
+                    <RichTextBox.Resources>
+                        <Style TargetType="{x:Type Paragraph}">
+                            <Setter Property="Margin" Value="0" />
+                            <Setter Property="Block.TextAlignment" Value="left" />
+                        </Style>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+
+            </ScrollViewer>
+
+            <TextBox
+                x:Name="message"
+                Grid.ColumnSpan="3"
+                Height="23"
+                Margin="61,0,0,0"
+                VerticalAlignment="Bottom"
+                Background="#33000000"
+                BorderBrush="Black"
+                BorderThickness="2"
+                FocusVisualStyle="{x:Null}"
+                FontFamily="Assets/#menomonia"
+                FontSize="13"
+                FontStyle="Normal"
+                FontWeight="Normal"
+                Foreground="DarkTurquoise"
+                KeyDown="TextBox_KeyDown"
+                SpellCheck.IsEnabled="True"
+                TabIndex="-1"
+                Text=""
+                TextWrapping="NoWrap" />
+            <!-- </Border> -->
+            <Label
+                Width="61"
+                Height="23"
+                Padding="5,3,5,5"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Background="#33000000"
+                Content="[Alliance]"
+                FontFamily="Assets/#menomonia"
+                FontSize="13"
+                FontStyle="Normal"
+                FontWeight="Normal"
+                Foreground="DarkTurquoise" />
+
+        </Grid>
+    </DockPanel>
+
+</Window>
+
+
