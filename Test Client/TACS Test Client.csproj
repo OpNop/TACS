@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TACS Lib\TACS Lib.csproj" />
-    <ProjectReference Include="..\TinyTools\TinyTools.csproj" />
+    <ProjectReference Include="..\Lib\TACS Lib.csproj" />
+    <ProjectReference Include="..\Tools\TinyTools.csproj" />
   </ItemGroup>
 
 </Project>
