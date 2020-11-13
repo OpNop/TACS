@@ -15,11 +15,13 @@
     <OutputType>WinExe</OutputType>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <OutputPath>C:\Users\OpNop\Documents\GitHub\TACS\Bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputType>Exe</OutputType>
+    <OutputPath>C:\Users\OpNop\Documents\GitHub\TACS\Bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -86,6 +88,11 @@
     <PackageReference Include="gw2sharp" Version="0.11.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SuperSimpleTcp" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\TACS Lib.csproj" />
+    <ProjectReference Include="..\Tools\TinyTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
