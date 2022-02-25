@@ -22,7 +22,7 @@ namespace TACS_Server.Commands
             await Task.Run(() =>
             {
                 var list = userList.sessionList.Values.OfType<UserSession>().Select(u => u.CharacterName);
-                user.Send(new Message($"Online users: {string.Join(", ", list)}"));
+                user.Send(new ServerSendMessage($"Online users: {string.Join(", ", list)}"));
             });
         }
     }

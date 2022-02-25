@@ -7,9 +7,9 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Threading.Tasks;
 using TACSLib;
-using TACSLib.Packets;
 using TACSLib.Packets.Client;
 using TACSLib.Packets.Server;
 using TinyLogger;
@@ -40,6 +40,7 @@ namespace TACS_Server
             //Connect to GW2 API
             var apiClient = new Gw2Client(new Connection());
             gw2api = apiClient.WebApi.V2;
+
         }
 
         public void UserAcceptHandler(ListenerSocket ss, Socket cs)
@@ -48,11 +49,9 @@ namespace TACS_Server
             userSession.BeginReceive(cs);
             userSession.OneTimeKey = new byte[8];
             RandomNumberGenerator.Create().GetBytes(userSession.OneTimeKey);
-            Packer p = new Packer(0);
             //p.Add(20201028);
             //p.Add(userSession.OneTimeKey);
-            p.AddString(mRSASelf.ToXmlString(false));
-            userSession.Send(p.ToArray());
+            userSession.Send(new ServerVersion(mRSASelf.ToXmlString(false)));
         }
 
         public void OnUserDisconnected(UserSession userSession)
@@ -178,11 +177,11 @@ namespace TACS_Server
         {
             if (userSession.IsMuted)
             {
-                userSession.Send(new Message("You are currently muted"));
+                userSession.Send(new ServerSendMessage("You are currently muted"));
                 return;
             }
 
-            var packet = new SendMessage(p);
+            var packet = new ClientSendMessage(p);
 
 
             //Check for chat or admin command
@@ -209,7 +208,7 @@ namespace TACS_Server
             else
             {
                 //process normal message
-                await userSessionList.Broadcast(new Message(packet.Message, userSession.CharacterName, MessageType.NORMAL));
+                await userSessionList.Broadcast(new ServerSendMessage(packet.Message, userSession.CharacterName, MessageType.NORMAL));
             }
         }
 

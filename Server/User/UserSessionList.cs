@@ -74,7 +74,7 @@ namespace TACS_Server
             });
         }
 
-        public async Task BroadcastExcludeSender(IServerPacket Packet, UserSession Sender)
+        public async Task BroadcastExcludeSender(IPacket Packet, UserSession Sender)
         {
             await Task.Run(() =>
             {

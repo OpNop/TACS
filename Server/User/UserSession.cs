@@ -111,7 +111,7 @@ namespace TACS_Server
             log.AddDebug("UserSession::OnSendFailed Called");
         }
 
-        public void Send(IServerPacket packet)
+        public void Send(IPacket packet)
         {
             var data = packet.Pack();
             log.AddBinary("SEND>", data);

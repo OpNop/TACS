@@ -78,7 +78,7 @@ namespace TACS_Server
             }
             else
             {
-                user.Send(new Message("Command not found"));
+                user.Send(new ServerSendMessage("Command not found"));
             }
         }
 
@@ -93,7 +93,7 @@ namespace TACS_Server
             }
             else
             {
-                user.Send(new Message("Command not found"));
+                user.Send(new ServerSendMessage("Command not found"));
             }
         }
 
@@ -141,7 +141,7 @@ namespace TACS_Server
             }
             else
             {
-                user.Send(new Message("Command not found"));
+                user.Send(new ServerSendMessage("Command not found"));
             }
         }
     }

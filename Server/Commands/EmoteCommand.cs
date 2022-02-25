@@ -7,218 +7,218 @@ namespace TACS_Server.Commands
     {
         public static async Task Beckon(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} beckons to {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} beckons to {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} beckons."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} beckons."));
         }
 
         public static async Task Bow(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} bow for {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} bow for {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} bow."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} bow."));
         }
 
         public static async Task Cheer(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} cheers for {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} cheers for {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} cheers."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} cheers."));
         }
 
         public static async Task Cower(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} cowers in fear from {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} cowers in fear from {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} cowers."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} cowers."));
         }
 
         public static async Task Crossarms(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} crosses their arms."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} crosses their arms."));
         }
 
         public static async Task Cry(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is crying."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is crying."));
         }
 
         public static async Task Dance(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is busting out some moves, some sweet dance moves."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is busting out some moves, some sweet dance moves."));
         }
 
         public static async Task Facepalm(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is upset."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is upset."));
         }
 
         public static async Task Geargrind(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} does the Gear Grind."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Gear Grind."));
         }
 
         public static async Task Gg(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} says \"Good Game\"."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} says \"Good Game\"."));
         }
 
         public static async Task Kneel(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} kneels."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} kneels."));
         }
 
         public static async Task Laugh(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} laughs at {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} laughs at {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} laughs."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} laughs."));
         }
 
         public static async Task No(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} disagrees with {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} disagrees with {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} disagrees."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} disagrees."));
         }
 
         public static async Task Playdead(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is probably dead."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is probably dead."));
         }
 
         public static async Task Point(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} points at {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} points at {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} points."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} points."));
         }
 
         public static async Task Ponder(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} ponders."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} ponders."));
         }
 
         public static async Task Rockout(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is rocking out!"));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is rocking out!"));
         }
 
         public static async Task Sad(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} is sad."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is sad."));
         }
 
         public static async Task Salute(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} salutes {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} salutes {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} salutes."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} salutes."));
         }
 
         public static async Task Shiver(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} shivers."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} shivers."));
         }
 
         public static async Task Shrug(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} shrugs at {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} shrugs at {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} shrugs."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} shrugs."));
         }
 
         public static async Task Shuffle(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} does the Inventory Shuffle."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Inventory Shuffle."));
         }
 
         public static async Task Sit(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} sits."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} sits."));
         }
 
         public static async Task Sleep(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} goes to sleep."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} goes to sleep."));
         }
 
         public static async Task Step(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message($"{user.CharacterName} does the Dodge Step."));
+            await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Dodge Step."));
         }
 
         public static async Task Surprised(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} is surprised by {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is surprised by {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} is surprised."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is surprised."));
         }
 
         public static async Task Talk(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} is talking to {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is talking to {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} is talking."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is talking."));
         }
 
         public static async Task Thanks(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} thanks {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} thanks {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} is grateful."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is grateful."));
         }
 
         public static async Task Threaten(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} threatens {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} threatens {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} is threatening."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is threatening."));
         }
 
         public static async Task Wave(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} waves at {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} waves at {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} waves."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} waves."));
         }
 
         public static async Task Yes(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} agrees with {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} agrees with {args}."));
             else
-                await userList.Broadcast(new Message($"{user.CharacterName} agrees."));
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} agrees."));
         }
 
         public static async Task Me(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} {args}."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} {args}."));
             else
-                user.Send(new Message($"Usage: /me <whatever you like>"));
+                user.Send(new ServerSendMessage($"Usage: /me <whatever you like>"));
         }
 
         public static async Task Bite(UserSession user, UserSessionList userList, string args)
         {
-            if (string.IsNullOrEmpty(args))
-                await userList.Broadcast(new Message($"{user.CharacterName} bites {args}'s ankles."));
+            if (!string.IsNullOrEmpty(args))
+                await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} bites {args}'s ankles."));
             else
-                await userList.Broadcast(new Message($"Watch out! {user.CharacterName} is going to start biting the nearest ankle."));
+                await userList.Broadcast(new ServerSendMessage($"Watch out! {user.CharacterName} is going to start biting the nearest ankle."));
         }
     }
 }
