@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using TACSLib;
+using TACSLib.Packets;
 using TACSLib.Packets.Server;
 using TinyLogger;
 using TinySocket;
@@ -66,14 +67,14 @@ namespace TACS_Server
             return true;
         }
 
-        internal bool ValidateGuild()
+        internal async Task<bool> ValidateGuild()
         {
             foreach (var guild in apiAccount.Guilds)
             {
                 if (Program.Config.Guilds.Any(g => g.Guid == guild))
-                    return true;
+                    return await Task.FromResult(true);
             }
-            return false;
+            return await Task.FromResult(false);
         }
 
         #region Networking

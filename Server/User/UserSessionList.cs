@@ -20,50 +20,39 @@ namespace TACS_Server
             chatServer = cs;
         }
 
-        public void Add(UserSession s)
+        public async Task<bool> Add(UserSession s)
         {
-            lock (this)
-            {
-                sessionList.Add(s.AccountName, s);
-            }
+            sessionList.Add(s.AccountName, s);
+            return await Task.FromResult(true);
         }
 
-        public UserSession GetUserByCharacter(string characterName)
+        public async Task<UserSession> GetUserByCharacter(string characterName)
         {
-            lock (this)
-            {
-                return sessionList.Values.OfType<UserSession>().Where(u => u.CharacterName.ToLower() == characterName.ToLower()).FirstOrDefault();
-            }
+            return await Task.FromResult(sessionList.Values.OfType<UserSession>().Where(u => u.CharacterName.ToLower() == characterName.ToLower()).FirstOrDefault());
         }
 
-        public bool Exist(string accountName)
+        public async Task<bool> Exist(string accountName)
         {
-            lock (this)
-            {
-                return sessionList.ContainsKey(accountName);
-            }
+            return await Task.FromResult(sessionList.ContainsKey(accountName));
         }
 
-        public UserSession GetUserSession(string accountName)
+        public async Task<UserSession> GetUserSession(string accountName)
         {
-            return (UserSession)sessionList[accountName];
+            return await Task.FromResult(sessionList[accountName]);
         }
 
-        public async Task Remove(UserSession us)
+        public async Task<bool> Remove(UserSession us)
         {
             if (us.IsAuthenticated)
             {
-                lock (this)
-                {
-                    sessionList.Remove(us.AccountName);
-                }
-
+                sessionList.Remove(us.AccountName);
                 //Broadcast that the user has logged off
                 await Broadcast(new StatusChange(us.AccountName, StatusType.Offline));
             }
+            return await Task.FromResult(true);
         }
 
-        public async Task Broadcast(IServerPacket Packet)
+        public async Task Broadcast(IPacket Packet)
         {
             await Task.Run(() =>
             {

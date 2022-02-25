@@ -54,10 +54,10 @@ namespace TACS_Server
             userSession.Send(new ServerVersion(mRSASelf.ToXmlString(false)));
         }
 
-        public void OnUserDisconnected(UserSession userSession)
+        public async Task OnUserDisconnected(UserSession userSession)
         {
             Log.AddNotice($"{userSession.AccountName} disconnecting");
-            userSessionList.Remove(userSession);
+            await userSessionList.Remove(userSession);
         }
 
         public async Task OnUserPacket(UserSession userSession, PacketType type, Unpacker p)
@@ -85,7 +85,7 @@ namespace TACS_Server
                         default:
                             Log.AddError("User trying to do something without being logged in");
                             userSession.Stop();
-                            userSessionList.Remove(userSession);
+                            await userSessionList.Remove(userSession);
                             break;
                     }
                 }
@@ -113,7 +113,7 @@ namespace TACS_Server
                 Log.AddError(e.Message);
                 Log.AddError(e.StackTrace);
                 userSession.Stop();
-                userSessionList.Remove(userSession);
+                await userSessionList.Remove(userSession);
             }
         }
 
@@ -145,12 +145,12 @@ namespace TACS_Server
                 userSession.Send(new LoginResult(0, "Invalid API Key"));
                 userSession.Stop();
             }
-            else if (userSessionList.Exist(userSession.AccountName))
+            else if (await userSessionList.Exist(userSession.AccountName))
             {
                 userSession.Send(new LoginResult(0, "Already logged in"));
                 userSession.Stop();
             }
-            else if (userSession.ValidateGuild() == false)
+            else if (await userSession.ValidateGuild() == false)
             {
                 userSession.Send(new LoginResult(0, "No supported Guild"));
                 userSession.Stop();
@@ -159,7 +159,7 @@ namespace TACS_Server
             {
                 userSession.CharacterName = userSession.AccountName;
                 userSession.IsAuthenticated = true;
-                userSessionList.Add(userSession);
+                await userSessionList.Add(userSession);
                 userSession.Send(new LoginResult(1));
 
                 //Broadcast that user has logged in
