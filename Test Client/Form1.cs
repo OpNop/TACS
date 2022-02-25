@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using TACSLib.Packets;
+using TACSLib.Packets.Client;
 using TinyLogger;
 
 namespace TACS_Client
@@ -58,11 +58,8 @@ namespace TACS_Client
         {
             if(e.KeyChar == (char)Keys.Enter)
             {
-                var m = new SendMessage()
-                {
-                    Message = txtMessage.Text
-                };
-                us.SendEncrypted(m.Write());
+                var m = new ClientSendMessage(txtMessage.Text);
+                us.SendEncrypted(m.Pack());
                 txtMessage.Clear();
                 e.Handled = true;
             }
@@ -89,11 +86,8 @@ namespace TACS_Client
         {
             if (!string.IsNullOrEmpty(txtAddress.Text))
             {
-                var p = new ChangeCharacter()
-                {
-                    CharacterName = txtCharacterName.Text
-                };
-                us.SendEncrypted(p.Write());
+                var p = new ChangeCharacter(txtCharacterName.Text);
+                us.SendEncrypted(p.Pack());
             }
         }
 

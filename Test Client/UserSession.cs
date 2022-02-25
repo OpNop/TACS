@@ -6,7 +6,8 @@ using System.Windows.Forms;
 using TinyLogger;
 using TinySocket.Server;
 using TinySocket;
-using TACSLib.Packets;
+using TACSLib;
+using TACSLib.Packets.Client;
 using System.Security.Cryptography;
 using System.Linq;
 
@@ -38,15 +39,31 @@ namespace TACS_Client
         protected override void OnDisconnected(Exception e)
         {
             form.updateButton("Connect");
-            //MessageBox.Show(e.Message);
+            MessageBox.Show(e.Message);
         }
 
         protected override void OnReceived(byte[] receivedData)
         {
-            log.AddBinary("<RESV", receivedData);
-            var p = new Unpacker(receivedData);
-            TACSLib.PacketType type = (TACSLib.PacketType)p.GetUInt8();
-            if(type == TACSLib.PacketType.S_SERVER_VER)
+            PacketType type;
+            Unpacker p;
+
+            if (mRSAServer != null)
+            {
+                // Encrypted data
+                var decryptedData = mRSASelf.Decrypt(receivedData, true);
+                log.AddBinary("<RESV", decryptedData);
+                p = new Unpacker(decryptedData);
+                type = (PacketType)p.GetUInt8();
+            }
+            else
+            {
+                log.AddBinary("<RESV", receivedData);
+                p = new Unpacker(receivedData);
+                type = (PacketType)p.GetUInt8();
+            }
+
+
+            if(type == PacketType.S_SERVER_VER)
             {
                 mRSAServer = new RSACryptoServiceProvider();
                 mRSAServer.FromXmlString(p.GetString());
@@ -77,11 +94,7 @@ namespace TACS_Client
 
         internal void SendLogin(string APIKey)
         {
-            var p = new Login()
-            {
-                APIKey = APIKey,
-                ClientVersion = 20201028
-            };
+            var p = new Login(20201028, APIKey);
             SendEncrypted(p.Pack());
         }
 
