@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using TACSLib.Packets;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server.Commands
@@ -10,50 +9,46 @@ namespace TACS_Server.Commands
         [IsAdmin]
         public static async Task Mute(UserSession user, UserSessionList userList, string args)
         {
-            await Task.Run(() =>
+            if (string.IsNullOrEmpty(args))
             {
-                if (string.IsNullOrEmpty(args))
-                {
-                    user.Send(new Message("Usage: /.mute <Charater Name>"));
-                    return;
-                }
+                user.Send(new ServerSendMessage("Usage: /.mute <Charater Name>"));
+                return;
+            }
 
-                var target = userList.GetUserByCharacter(string.Join(" ", args));
+            var target = await userList.GetUserByCharacter(string.Join(" ", args));
 
-                if (target != null)
-                {
-                    target.IsMuted = true;
-                    user.Send(new Message($"User {target.AccountName} has been muted"));
-                }
-                else
-                {
-                    user.Send(new Message("User not found"));
-                }
-            });
+            if (target != null)
+            {
+                target.IsMuted = true;
+                user.Send(new ServerSendMessage($"User {target.AccountName} has been muted"));
+            }
+            else
+            {
+                user.Send(new ServerSendMessage("User not found"));
+            }
         }
 
+        [Command("unmute")]
+        [IsAdmin]
         public static async Task Unmute(UserSession user, UserSessionList userList, string args)
         {
-            await Task.Run(() =>
+            if (string.IsNullOrEmpty(args))
             {
-                if (string.IsNullOrEmpty(args))
-                {
-                    user.Send(new Message("Usage: /.unmute <Charater Name>"));
-                    return;
-                }
+                user.Send(new ServerSendMessage("Usage: /.unmute <Charater Name>"));
+                return;
+            }
 
-                var target = userList.GetUserByCharacter(args);
+            var target = await userList.GetUserByCharacter(args);
 
-                if (target != null)
-                {
-                    target.IsMuted = false;
-                    user.Send(new Message($"User {target.AccountName} has been unmuted"));
-                }
-                else
-                {
-                    user.Send(new Message("User not found"));
-                }
-            });
+            if (target != null)
+            {
+                target.IsMuted = false;
+                user.Send(new ServerSendMessage($"User {target.AccountName} has been unmuted"));
+            }
+            else
+            {
+                user.Send(new ServerSendMessage("User not found"));
+            }
         }
 
         [Command("kick")]
@@ -62,11 +57,11 @@ namespace TACS_Server.Commands
         {
             if (string.IsNullOrEmpty(args))
             {
-                user.Send(new Message("Usage: /.kick <Charater Name>"));
+                user.Send(new ServerSendMessage("Usage: /.kick <Charater Name>"));
                 return;
             }
 
-            var target = userList.GetUserByCharacter(args);
+            var target = await userList.GetUserByCharacter(args);
 
             if (target != null)
             {
@@ -74,7 +69,7 @@ namespace TACS_Server.Commands
             }
             else
             {
-                user.Send(new Message("User not found"));
+                user.Send(new ServerSendMessage("User not found"));
             }
         }
 
@@ -82,7 +77,7 @@ namespace TACS_Server.Commands
         [IsAdmin]
         public static async Task Announce(UserSession user, UserSessionList userList, string args)
         {
-            await userList.Broadcast(new Message(args.ToString(), user.CharacterName, TACSLib.MessageType.ANNOUNCE));
+            await userList.Broadcast(new ServerSendMessage(args.ToString(), user.CharacterName, TACSLib.MessageType.ANNOUNCE));
         }
     }
 }
