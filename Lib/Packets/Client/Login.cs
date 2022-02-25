@@ -1,15 +1,19 @@
 ﻿using TinySocket;
 
-namespace TACSLib.Packets
+namespace TACSLib.Packets.Client
 {
-    public class Login
+    public class Login : IPacket
     {
-        public int ClientVersion;
-        public string APIKey;
+        private readonly PacketType _packetType = PacketType.C_LOGIN;
 
-        private const PacketType ID = PacketType.C_LOGIN;
+        public int ClientVersion { get; private set; }
+        public string APIKey { get; private set; }
 
-        public Login() { }
+        public Login(int clientVersion, string apiKey)
+        {
+            ClientVersion = clientVersion;
+            APIKey = apiKey;
+        }
 
         public Login(Unpacker p)
         {
@@ -19,10 +23,15 @@ namespace TACSLib.Packets
 
         public byte[] Pack()
         {
-            var p = new Packer((byte)ID);
+            var p = new Packer((byte)_packetType);
             p.Add(ClientVersion);
             p.AddString(APIKey);
             return p.ToArray();
+        }
+
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }
