@@ -1,4 +1,4 @@
-﻿using TinySocket;
+﻿using TinyTools.TinySocket;
 
 namespace TACSLib.Packets.Client
 {

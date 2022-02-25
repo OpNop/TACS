@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using TACSLib.Packets;
+using TACS_Server.User;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server.Commands

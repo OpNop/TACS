@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 using TinyLogger;
-using TinySocket.Server;
-using TinySocket;
+using TinyTools.TinySocket.Server;
+using TinyTools.TinySocket;
 using TACSLib;
 using TACSLib.Packets.Client;
 using System.Security.Cryptography;
-using System.Linq;
 
 namespace TACS_Client
 {

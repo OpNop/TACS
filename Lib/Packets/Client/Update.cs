@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using TinySocket;
+using TinyTools.TinySocket;
 
 namespace TACSLib.Packets.Client
 {

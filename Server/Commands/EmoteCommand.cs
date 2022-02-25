@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TACS_Server.User;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server.Commands
@@ -37,36 +38,43 @@ namespace TACS_Server.Commands
                 await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} cowers."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Crossarms(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} crosses their arms."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Cry(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is crying."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Dance(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is busting out some moves, some sweet dance moves."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Facepalm(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is upset."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Geargrind(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Gear Grind."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Gg(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} says \"Good Game\"."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Kneel(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} kneels."));
@@ -88,6 +96,7 @@ namespace TACS_Server.Commands
                 await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} disagrees."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Playdead(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is probably dead."));
@@ -101,16 +110,19 @@ namespace TACS_Server.Commands
                 await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} points."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Ponder(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} ponders."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Rockout(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is rocking out!"));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Sad(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} is sad."));
@@ -124,6 +136,7 @@ namespace TACS_Server.Commands
                 await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} salutes."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Shiver(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} shivers."));
@@ -137,21 +150,25 @@ namespace TACS_Server.Commands
                 await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} shrugs."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Shuffle(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Inventory Shuffle."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Sit(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} sits."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Sleep(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} goes to sleep."));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Needed from Itnerface")]
         public static async Task Step(UserSession user, UserSessionList userList, string args)
         {
             await userList.Broadcast(new ServerSendMessage($"{user.CharacterName} does the Dodge Step."));

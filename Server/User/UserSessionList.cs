@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using TACSLib;
 using TACSLib.Packets;
 using TACSLib.Packets.Server;
 
-namespace TACS_Server
+namespace TACS_Server.User
 {
     public class UserSessionList
     {

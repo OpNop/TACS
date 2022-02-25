@@ -2,20 +2,16 @@
 using Gw2Sharp.WebApi.Exceptions;
 using Gw2Sharp.WebApi.V2.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using TACSLib;
 using TACSLib.Packets;
-using TACSLib.Packets.Server;
 using TinyLogger;
-using TinySocket;
-using TinySocket.Server;
+using TinyTools.TinySocket;
+using TinyTools.TinySocket.Server;
 
-namespace TACS_Server
+namespace TACS_Server.User
 {
     public class UserSession : ASocket
     {

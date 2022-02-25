@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using TACS_Server.Commands;
+using TACS_Server.User;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server
@@ -85,7 +86,7 @@ namespace TACS_Server
         public async Task ExecuteAdminCommand(UserSession user, string command, string args)
         {
             //strip leading .
-            command = command.Substring(1);
+            command = command[1..];
 
             if (user.IsOfficer && AdminCommands.ContainsKey(command))
             {

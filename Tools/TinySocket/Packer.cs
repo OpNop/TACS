@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace TinySocket
+namespace TinyTools.TinySocket
 {
     public class Packer
     {

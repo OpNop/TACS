@@ -1,4 +1,4 @@
-﻿namespace TinySocket.Server
+﻿namespace TinyTools.TinySocket.Server
 {
     public enum SessionState
     {

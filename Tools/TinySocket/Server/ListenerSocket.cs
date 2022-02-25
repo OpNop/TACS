@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace TinySocket.Server
+namespace TinyTools.TinySocket.Server
 {
     public class ListenerSocket
     {

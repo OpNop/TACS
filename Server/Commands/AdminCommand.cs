@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using TACS_Server.User;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server.Commands
