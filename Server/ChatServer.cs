@@ -1,5 +1,8 @@
 ﻿using Gw2Sharp;
 using Gw2Sharp.WebApi.V2;
+using MQTTnet;
+using MQTTnet.Client;
+using MQTTnet.Client.Options;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -23,6 +26,9 @@ namespace TACS_Server
         private readonly Logger Log;
         private readonly ChatCommandHandler commandHandler;
         internal readonly RSACryptoServiceProvider mRSASelf;
+
+        //MQTT Client
+        private IMqttClient mqttClient;
 
         public ChatServer()
         {
@@ -57,6 +63,13 @@ namespace TACS_Server
 
         public async Task OnUserPacket(UserSession userSession, PacketType type, Unpacker p)
         {
+            //Fun MQTT publish
+            var message = new MqttApplicationMessageBuilder()
+                .WithTopic("tiny/tacs")
+                .WithPayload($"Incoming Packet of type {type}")
+                .Build();
+            await mqttClient.PublishAsync(message, CancellationToken.None); // Since 3.0.5 with CancellationToken
+
             try
             {
                 //non logged in user packets
@@ -207,6 +220,36 @@ namespace TACS_Server
             Log.AddNotice($"API: {build.Id}");
         }
 
+        private async Task SetupMQTT()
+        {
+            // Create a new MQTT client.
+            var factory = new MqttFactory();
+            mqttClient = factory.CreateMqttClient();
+
+            var options = new MqttClientOptionsBuilder()
+                .WithClientId("TINYTACSServer")
+                .WithTcpServer("broker.hivemq.com")
+                .WithCleanSession()
+                .Build();
+
+            await mqttClient.ConnectAsync(options);
+
+            mqttClient.UseDisconnectedHandler(async e =>
+            {
+                Log.AddError("### DISCONNECTED FROM MQTT SERVER ###");
+                await Task.Delay(TimeSpan.FromSeconds(5));
+
+                try
+                {
+                    await mqttClient.ConnectAsync(options);
+                }
+                catch
+                {
+                    Log.AddError("### RECONNECTING MQTT FAILED ###");
+                }
+            });
+
+        }
 
         public async Task Start()
         {
@@ -214,6 +257,10 @@ namespace TACS_Server
 
             await GetAPIBuild();
             Log.AddNotice($"Added {commandHandler.UserCommandCount()} User Commands, {commandHandler.AdminCommandCount()} Admin Commands");
+
+            //Connect to MQTT
+            Log.AddNotice("Connecting to MQTT server");
+            await SetupMQTT();
 
             //Start listener
             var host = Dns.GetHostEntry(Dns.GetHostName());
