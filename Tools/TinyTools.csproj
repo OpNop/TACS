@@ -1,20 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!--<TargetFramework>netcoreapp3.1</TargetFramework>-->
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
+    <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <OutputPath>C:\Users\OpNop\Documents\GitHub\TACS\Bin\$(Configuration)\</OutputPath>
+    <OutputPath>..\Bin\$(Configuration)\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\OpNop\Documents\GitHub\TACS\Bin\$(Configuration)\</OutputPath>
+    <OutputPath>..\Bin\$(Configuration)\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
