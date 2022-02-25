@@ -2,37 +2,41 @@
 
 namespace TACSLib.Packets.Server
 {
-    public class LoginResult : IServerPacket
+    public class LoginResult : IPacket
     {
-        private readonly byte _authCode;
-        private readonly string _authMessage;
-
-        private const PacketType ID = PacketType.S_LOGIN_RESULT;
-
+        private readonly PacketType _packetType = PacketType.S_LOGIN_RESULT;
+        public byte AuthCode { get; private set; }
+        public string AuthMessage { get; private set; }
+        
         public LoginResult(byte authCode)
         {
-            _authCode = authCode;
-            _authMessage = "";
+            AuthCode = authCode;
+            AuthMessage = "";
         }
 
         public LoginResult(byte authCode, string authMessage)
         {
-            _authCode = authCode;
-            _authMessage = authMessage;
+            AuthCode = authCode;
+            AuthMessage = authMessage;
         }
 
         public LoginResult(Unpacker p)
         {
-            _authCode = p.GetUInt8();
-            _authMessage = p.GetString();
+            AuthCode = p.GetUInt8();
+            AuthMessage = p.GetString();
         }
 
         public byte[] Pack()
         {
-            var p = new Packer((byte)ID);
-            p.Add(_authCode);
-            p.AddString(_authMessage);
+            var p = new Packer((byte)_packetType);
+            p.Add(AuthCode);
+            p.AddString(AuthMessage);
             return p.ToArray();
+        }
+
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }

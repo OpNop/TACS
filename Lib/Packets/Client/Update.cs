@@ -3,13 +3,15 @@ using TinySocket;
 
 namespace TACSLib.Packets.Client
 {
-    public class Update
+    public class Update : IPacket
     {
+        private readonly PacketType _packetType = PacketType.C_UPDATE;
         public MumbleData MumbleData;
 
-        private const PacketType ID = PacketType.C_UPDATE;
-
-        public Update() { }
+        public Update(MumbleData mumbleData)
+        {
+            MumbleData = mumbleData;
+        }
 
         public Update(Unpacker p)
         {
@@ -27,6 +29,10 @@ namespace TACSLib.Packets.Client
             //var p = new Packer((byte)ID);
             //p.AddString(CharacterName);
             //return p.ToArray();
+        }
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }

@@ -1,16 +1,16 @@
 ﻿using TinySocket;
 
-namespace TACSLib.Packets
+namespace TACSLib.Packets.Client
 {
     public class SendCert
     {
-        public readonly string RSAKey;
+        private readonly PacketType _packetType = PacketType.C_SEND_CERT;
 
-        private const PacketType ID = PacketType.C_SEND_CERT;
+        public string RSAKey { get; private set; }
 
-        public SendCert(string RSAKey)
+        public SendCert(string rsaKey)
         {
-            this.RSAKey = RSAKey;
+            RSAKey = rsaKey;
         }
 
         public SendCert(Unpacker p)
@@ -20,9 +20,13 @@ namespace TACSLib.Packets
 
         public byte[] Pack()
         {
-            var p = new Packer((byte)ID);
+            var p = new Packer((byte)_packetType);
             p.AddString(RSAKey);
             return p.ToArray();
+        }
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }

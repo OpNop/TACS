@@ -2,31 +2,36 @@
 
 namespace TACSLib.Packets.Server
 {
-    public class StatusChange : IServerPacket
+    public class StatusChange : IPacket
     {
-        private readonly string _accountName;
-        private readonly StatusType _status;
+        private readonly PacketType _packetType = PacketType.S_STATUS_CHANGE;
+        public string AccountName { get; private set; }
+        public StatusType Status { get; private set; }
 
-        private const PacketType ID = PacketType.S_STATUS_CHANGE;
 
         public StatusChange(string accountName, StatusType status)
         {
-            _accountName = accountName;
-            _status = status;
+            AccountName = accountName;
+            Status = status;
         }
 
         public StatusChange(Unpacker p)
         {
-            _accountName = p.GetString();
-            _status = (StatusType)p.GetInt8();
+            AccountName = p.GetString();
+            Status = (StatusType)p.GetInt8();
         }
 
         public byte[] Pack()
         {
-            var p = new Packer((byte)ID);
-            p.AddString(_accountName);
-            p.Add((byte)_status);
+            var p = new Packer((byte)_packetType);
+            p.AddString(AccountName);
+            p.Add((byte)Status);
             return p.ToArray();
+        }
+
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }

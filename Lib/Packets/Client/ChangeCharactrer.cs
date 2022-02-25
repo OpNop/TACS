@@ -1,25 +1,32 @@
 ﻿using TinySocket;
 
-namespace TACSLib.Packets
+namespace TACSLib.Packets.Client
 {
-    public class ChangeCharacter
+    public class ChangeCharacter : IPacket
     {
-        public string CharacterName;
+        private readonly PacketType _packetType = PacketType.C_CHANGE_CHARACTER;
+        public string CharacterName { get; private set; }
 
-        private const PacketType ID = PacketType.C_CHANGE_CHARACTER;
-
-        public ChangeCharacter() { }
+        public ChangeCharacter(string characterName)
+        {
+            CharacterName = characterName;
+        }
 
         public ChangeCharacter(Unpacker p)
         {
             CharacterName = p.GetString();
         }
 
-        public byte[] Write()
+        public byte[] Pack()
         {
-            var p = new Packer((byte)ID);
+            var p = new Packer((byte)_packetType);
             p.AddString(CharacterName);
             return p.ToArray();
+        }
+
+        public PacketType ID
+        {
+            get { return _packetType; }
         }
     }
 }
