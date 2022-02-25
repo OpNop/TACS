@@ -115,7 +115,7 @@ namespace TACS_Server
         public void Send(IPacket packet)
         {
             var data = packet.Pack();
-            log.AddBinary("SEND>", data);
+            log.AddBinary($"SEND> {Enum.GetName(typeof(PacketType), packet.ID)}", data);
 
             if (IsEncrypted)
             {
