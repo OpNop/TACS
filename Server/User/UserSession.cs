@@ -119,7 +119,7 @@ namespace TACS_Server
 
             if (IsEncrypted)
             {
-                data = chatServer.mRSASelf.Encrypt(data, true);
+                data = mRSAClient.Encrypt(data, true);
             }
             base.Send(data);
         }
