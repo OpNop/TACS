@@ -47,6 +47,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -105,6 +107,7 @@
             // 
             // btnConnect
             // 
+            this.btnConnect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnConnect.Location = new System.Drawing.Point(839, 16);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
@@ -153,6 +156,7 @@
             // 
             // cbxAPI
             // 
+            this.cbxAPI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxAPI.FormattingEnabled = true;
             this.cbxAPI.Location = new System.Drawing.Point(766, 97);
             this.cbxAPI.Name = "cbxAPI";
@@ -161,6 +165,7 @@
             // 
             // btnChangerCharacter
             // 
+            this.btnChangerCharacter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnChangerCharacter.Location = new System.Drawing.Point(766, 184);
             this.btnChangerCharacter.Name = "btnChangerCharacter";
             this.btnChangerCharacter.Size = new System.Drawing.Size(166, 23);
@@ -171,6 +176,7 @@
             // 
             // txtCharacterName
             // 
+            this.txtCharacterName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCharacterName.Location = new System.Drawing.Point(766, 155);
             this.txtCharacterName.Name = "txtCharacterName";
             this.txtCharacterName.Size = new System.Drawing.Size(166, 23);
@@ -178,6 +184,7 @@
             // 
             // btnSendKey
             // 
+            this.btnSendKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSendKey.Location = new System.Drawing.Point(766, 68);
             this.btnSendKey.Name = "btnSendKey";
             this.btnSendKey.Size = new System.Drawing.Size(166, 23);
