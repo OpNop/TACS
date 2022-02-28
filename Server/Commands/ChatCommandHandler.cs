@@ -31,19 +31,15 @@ namespace TACS_Server
             return;
          }
 
-         if (commandText.StartsWith(".") && !user.IsOfficer)
-         {
-            user.Send(new ServerSendMessage("Command not found"));
-            return;
-         }
-
-
          await _commands[commandText].Execute(user, UserList, args);
       }
 
       internal void RegisterCommand(ChatCommand command)
       {
-         _commands.Add(command.CommandText, command);  
+         foreach (var synonym in command.CommandTexts)
+         {
+            _commands[synonym] = command;
+         }
       }
     }
 }
