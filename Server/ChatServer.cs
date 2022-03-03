@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Threading;
 using System.Threading.Tasks;
+using TACS_Server.Commands;
 using TACS_Server.User;
 using TACSLib;
 using TACSLib.Packets.Client;
@@ -36,7 +37,10 @@ namespace TACS_Server
             Log = Logger.GetInstance();
             mRSASelf = new RSACryptoServiceProvider(2048);
             userSessionList = new UserSessionList(this);
-            commandHandler = new ChatCommandHandler(userSessionList);
+            commandHandler = new ChatCommandHandler(userSessionList)
+               .BuildAdminCommands()
+               .BuildUserCommands()
+               .BuildEmoteCommands();
 
             //Connect to GW2 API
             var apiClient = new Gw2Client(new Connection());
@@ -194,17 +198,7 @@ namespace TACS_Server
                 if (split.Length > 1)
                     args = split[1];
 
-                if (command.StartsWith(".") && userSession.IsOfficer)
-                {
-                    //check for and run admin command
-                    await commandHandler.ExecuteAdminCommand(userSession, command, args);
-                }
-                else
-                {
-                    //check for and run command
-                    await commandHandler.ExecuteUserCommand(userSession, command, args);
-
-                }
+               await commandHandler.ExecuteCommand(userSession, command, args);
             }
             else
             {
