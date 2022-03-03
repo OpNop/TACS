@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>TACSLib</RootNamespace>
     <LangVersion>8.0</LangVersion>
-    <UseCommonOutputDirectory>true</UseCommonOutputDirectory>
     <AssemblyName>TACSLib</AssemblyName>
   </PropertyGroup>
 
