@@ -85,7 +85,7 @@ namespace TACS_Server.Commands
    {
       internal TargetableEmoteCommand(ICollection<string> commandTexts, Func<UserSession, string> emoteTextFormatter, Func<UserSession, string, string> targetedEmoteTextFormatter) : base(commandTexts, async (UserSession user, UserSessionList userList, string args) =>
       {
-         if (!string.IsNullOrEmpty(args))
+         if (string.IsNullOrEmpty(args))
             await userList.Broadcast(new ServerSendMessage(emoteTextFormatter(user)));
          else
             await userList.Broadcast(new ServerSendMessage(targetedEmoteTextFormatter(user, args)));
@@ -95,7 +95,7 @@ namespace TACS_Server.Commands
 
       internal TargetableEmoteCommand(string commandText, Func<UserSession, string> emoteTextFormatter, Func<UserSession, string, string> targetedEmoteTextFormatter) : base(commandText, async (UserSession user, UserSessionList userList, string args) =>
          {
-            if (!string.IsNullOrEmpty(args))
+            if (string.IsNullOrEmpty(args))
                await userList.Broadcast(new ServerSendMessage(emoteTextFormatter(user)));
             else
                await userList.Broadcast(new ServerSendMessage(targetedEmoteTextFormatter(user, args)));
