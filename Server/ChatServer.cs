@@ -216,8 +216,19 @@ namespace TACS_Server
         public async Task GetAPIBuild()
         {
             //Check API connection
-            var build = await gw2api.Build.GetAsync();
-            Log.AddNotice($"API: {build.Id}");
+            try
+            {
+                var build = await gw2api.Build.GetAsync();
+                Log.AddNotice($"API: {build.Id}");
+            } catch (Exception ex)
+            {
+                Log.AddError("Error communicating with GW2 API. Error was:");
+                Log.AddError(ex.Message);
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            
         }
 
         private async Task SetupMQTT()
