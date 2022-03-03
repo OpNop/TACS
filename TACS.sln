@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACS Server", "Server\TACS Server.csproj", "{A51131D6-908E-49F5-9E08-13549CE18A4C}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyTools", "Tools\TinyTools.csproj", "{26843112-B494-42A3-BDD1-F9119190ABA6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACS Lib", "Lib\TACS Lib.csproj", "{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACS Client", "Client\TACS Client.csproj", "{B93A3690-18C5-4070-BACE-06DDB041CB8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B93A3690-18C5-4070-BACE-06DDB041CB8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B93A3690-18C5-4070-BACE-06DDB041CB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B93A3690-18C5-4070-BACE-06DDB041CB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B93A3690-18C5-4070-BACE-06DDB041CB8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
