@@ -26,8 +26,8 @@ namespace TACS_Server
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("settings.json is missing.");
-                Environment.Exit(0);
+                Console.WriteLine("settings.json is missing. Press any key to exit.");
+                Console.ReadKey();
             }
             
             return JsonConvert.DeserializeObject<Settings>(reader);
