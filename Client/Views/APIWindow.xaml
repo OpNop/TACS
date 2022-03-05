@@ -1,0 +1,92 @@
+﻿<Window
+    x:Class="TACS_Client.Views.APIWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="APIWindow"
+    Width="575"
+    Height="393"
+    BorderBrush="Black"
+    Cursor="/Assets/mouse.cur"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Background>
+        <ImageBrush
+            AlignmentY="Top"
+            ImageSource="/Assets/api_key_background.png"
+            Stretch="None" />
+    </Window.Background>
+
+    <StackPanel Margin="20,21,20,20">
+        <Image
+            Width="25"
+            Height="25"
+            Margin="0,-17,-17,0"
+            HorizontalAlignment="Right"
+            MouseLeftButtonDown="Image_MouseLeftButtonDown"
+            Stretch="UniformToFill">
+            <Image.Style>
+                <Style>
+                    <Setter Property="Image.Source" Value="/Assets/button-exit.png" />
+                    <Style.Triggers>
+                        <Trigger Property="Image.IsMouseOver" Value="True">
+                            <Setter Property="Image.Source" Value="/Assets/button-exit-active.png" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <Label
+            Margin="0,-8,0,0"
+            Padding="5,0,5,5"
+            Content="Enter API Key"
+            FontFamily="Cronos Pro"
+            FontSize="22"
+            Foreground="White" />
+        <TextBlock
+            Margin="5,5,5,5"
+            FontFamily="Cronos Pro"
+            FontSize="16"
+            FontWeight="Normal"
+            Foreground="White"
+            Text="Enter your API Key below, the key must include the account, characters and guilds permissions in order to work."
+            TextWrapping="Wrap" />
+        <Separator Height="20" Margin="5,2,5,2">
+            <Separator.Background>
+                <RadialGradientBrush>
+                    <GradientStop Offset="1" Color="#4C515151" />
+                    <GradientStop Offset="0.95" Color="#FF515151" />
+                </RadialGradientBrush>
+            </Separator.Background>
+        </Separator>
+        <WrapPanel Margin="0,50,0,0" HorizontalAlignment="Center">
+            <TextBox
+                x:Name="ApiKeyInput"
+                Width="430"
+                Margin="0,0,4,0"
+                Padding="3,3,3,3"
+                Background="#66000000"
+                BorderBrush="Black"
+                BorderThickness="1"
+                FontFamily="Cronos Pro"
+                FontSize="22"
+                Foreground="#FFD8D8D8" />
+            <Button
+                Width="70"
+                Click="Button_Click"
+                Content="Check"
+                FontSize="22" />
+            <Label
+                x:Name="CreateAPI"
+                Content="[Create API Key]"
+                Cursor="Hand"
+                Foreground="#FF8FADFF"
+                MouseLeftButtonDown="CreateAPI_MouseLeftButtonDown" />
+        </WrapPanel>
+    </StackPanel>
+</Window>

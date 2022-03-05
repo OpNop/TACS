@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <RootNamespace>TACS_Client</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>..\Bin\$(Configuration)\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Bin\$(Configuration)\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\api_key_background.png" />
+    <None Remove="Assets\button-exit-active.png" />
+    <None Remove="Assets\button-exit.png" />
+    <None Remove="Assets\chat_background.png" />
+    <None Remove="Assets\Cronos Pro Regular.ttf" />
+    <None Remove="Assets\menomonia.ttf" />
+    <None Remove="Assets\mouse.cur" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gw2Sharp" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lib\TACS Lib.csproj" />
+    <ProjectReference Include="..\Tools\TinyTools.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\api_key_background.png" />
+    <Resource Include="Assets\button-exit-active.png" />
+    <Resource Include="Assets\button-exit.png" />
+    <Resource Include="Assets\chat_background.png" />
+    <Resource Include="Assets\Cronos Pro Regular.ttf" />
+    <Resource Include="Assets\menomonia.ttf" />
+    <Resource Include="Assets\mouse.cur">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+</Project>

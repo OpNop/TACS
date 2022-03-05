@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TinyTools", "Tools\TinyTool
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TACS Lib", "Lib\TACS Lib.csproj", "{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TACS Client", "Client\TACS Client.csproj", "{503BCE49-7EEB-4A5B-B0C0-B6E149690141}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAB9DB56-2AF0-4C99-8F06-B2D06EE13B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{503BCE49-7EEB-4A5B-B0C0-B6E149690141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{503BCE49-7EEB-4A5B-B0C0-B6E149690141}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{503BCE49-7EEB-4A5B-B0C0-B6E149690141}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{503BCE49-7EEB-4A5B-B0C0-B6E149690141}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
