@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TACS_Server.User;
@@ -19,8 +20,17 @@ namespace TACS_Server.Commands
             {
                await Task.Run(() =>
                {
-                  var list = userList.sessionList.Values.OfType<UserSession>().Select(u => u.CharacterName);
-                  user.Send(new ServerSendMessage($"Online users: {string.Join(", ", list)}"));
+                   IEnumerable<string> list;
+
+                   if (user.IsOfficer)
+                   {
+                       list = userList.sessionList.Values.OfType<UserSession>().Select(u => u.CharacterName);
+                   } else
+                   {
+                       list = userList.sessionList.Values.OfType<UserSession>().Where(u => !u.IsHidden).Select(u => u.CharacterName);
+                   }
+                  
+                  user.Send(new ServerSendMessage($"{list.Count()} Online users: {string.Join(", ", list)}"));
                });
             }));
 

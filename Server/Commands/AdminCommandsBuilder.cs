@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TACS_Server.User;
+using TACSLib;
 using TACSLib.Packets.Server;
 
 namespace TACS_Server.Commands
@@ -8,7 +9,24 @@ namespace TACS_Server.Commands
    {
       internal static ChatCommandHandler BuildAdminCommands(this ChatCommandHandler handler)
       {
-         handler.RegisterCommand(new AdminChatCommand("mute", async (UserSession user, UserSessionList userList, string args) =>
+            handler.RegisterCommand(new AdminChatCommand("hide", async (UserSession user, UserSessionList userList, string args) =>
+            {
+                //Change status and send fake sign on/off message
+                if (user.IsHidden)
+                {
+                    user.IsHidden = false;
+                    user.Send(new ServerSendMessage("You are now Visible"));
+                    await userList.BroadcastExcludeSender(new StatusChange(user.AccountName, StatusType.Online), user);
+                }
+                else
+                {
+                    user.IsHidden = true;
+                    user.Send(new ServerSendMessage("You are now Hidden"));
+                    await userList.BroadcastExcludeSender(new StatusChange(user.AccountName, StatusType.Offline), user);
+                }
+            }));
+
+            handler.RegisterCommand(new AdminChatCommand("mute", async (UserSession user, UserSessionList userList, string args) =>
             {
                if (string.IsNullOrEmpty(args))
                {

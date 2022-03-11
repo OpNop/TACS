@@ -18,12 +18,12 @@ namespace TACS_Server.User
         public string ID;
         public string AccountName;
         public string APIKey;
-        public string CharacterName;
         public string ClientVersion;
         public byte[] OneTimeKey;
         public bool IsEncrypted;
         public bool IsAuthenticated;
         public bool IsOfficer;
+        public bool IsHidden;
         public bool IsMuted;
         public int Version;
         public MumbleData MumbleData;
@@ -34,6 +34,19 @@ namespace TACS_Server.User
         private RSACryptoServiceProvider mRSAClient;
 
         private Account apiAccount;
+
+        private string _characterName;
+        public string CharacterName
+        {
+            get
+            {
+                if (IsHidden)
+                    return $"{_characterName} (Hidden)";
+                else
+                    return _characterName;
+            }
+            set { _characterName = value; }
+        }
 
         public UserSession(ChatServer cs)
         {
